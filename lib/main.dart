@@ -1,6 +1,8 @@
 import 'package:cocktail/home.dart';
 import 'package:flutter/material.dart';
 
+const Color myColor = Colors.cyan;
+
 void main() {
   runApp(MyApp());
 }
@@ -14,8 +16,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Canteen Application',
       theme: ThemeData(
-        primarySwatch: Colors.cyan,
-       // accentColor: Colors.cyan,
+        primarySwatch: myColor,
+        fontFamily: "Lora",
+        // accentColor: Colors.cyan,
         //buttonTheme: ButtonThemeData(), //works only witht the raised button!
       ),
       home: Home(),

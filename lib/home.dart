@@ -4,6 +4,8 @@ import 'package:cocktail/detail.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'main.dart';
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -31,53 +33,70 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.cyan,
-      appBar: AppBar(
-        title: Center(child: Text('Nokri')),
-        elevation: 0.1,
-      ),
-      body: Center(
-        //if you want in same row, use Row and then SizedBox with width prop
-        child: res != null
-            ? ListView.builder(
-                //  itemExtent: 50.0,
-                itemCount: drinks.length,
-                itemBuilder: (context, index) {
-                  var drink = drinks[index];
+    return Container(
+      
+      decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [myColor, Colors.white])),
 
-                  return ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(drink['strDrinkThumb']),
-                    ),
-                    title: Text(
-                      '${drink['strDrink']} ',
-                      style: TextStyle(
-                        fontSize: 25.0,
-                        color: Colors.black,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          title: Center(child: Text('The Cocktail Store😁')),
+          elevation: 0.1,
+        ),
+        body: Center(
+          //if you want in same row, use Row and then SizedBox with width prop
+          child: res != null
+              ? ListView.builder( 
+                
+                  //list view => grid view 
+
+                 /*  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2
+                  ), */
+
+                  //  itemExtent: 50.0,
+                  itemCount: drinks.length,
+                  itemBuilder: (context, index) {
+                    var drink = drinks[index];
+
+                    return ListTile(
+                      leading: Hero(
+                        tag: drink["idDrink"],
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(drink['strDrinkThumb']),
+                        ),
                       ),
-                    ),
-                    subtitle: Text(
-                      '${drink['idDrink']} ',
-                      style: TextStyle(
-                        //fontSize: 20.0,
-                        color: Colors.black,
+                      title: Text(
+                        '${drink['strDrink']} ',
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Detail(),
-                            fullscreenDialog: true,
-                          ));
-                    },
-                  );
-                },
-              )
-            : CircularProgressIndicator(
-                backgroundColor: Colors.black,
-              ),
+                      subtitle: Text(
+                        '${drink['idDrink']} ',
+                        style: TextStyle(
+                          //fontSize: 20.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Detail(drink: drink),
+                              fullscreenDialog: true,
+                            ));
+                      },
+                    );
+                  },
+                )
+              : CircularProgressIndicator(
+                  backgroundColor: Colors.black,
+                ),
+        ),
       ),
     );
   }
