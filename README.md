@@ -1,4 +1,10 @@
-# cocktail
+# Cocktail - Flutter Application
+
+### Screens
+<img src="https://user-images.githubusercontent.com/55467927/105940678-db3a2280-6081-11eb-97bc-5ae6db129fbf.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/55467927/105940688-e1300380-6081-11eb-93f0-2a1ab76814dc.jpg" width="200">
+
+
 
 A new Flutter project.
 
